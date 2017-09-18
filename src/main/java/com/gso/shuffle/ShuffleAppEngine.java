@@ -23,6 +23,8 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.feed.synd.SyndFeedImpl;
+import com.rometools.rome.feed.synd.SyndImage;
+import com.rometools.rome.feed.synd.SyndImageImpl;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedOutput;
 import org.jsoup.Jsoup;
@@ -49,6 +51,10 @@ public class ShuffleAppEngine extends HttpServlet {
         feed.setTitle("Shuffle");
         feed.setLink("http://www.europe1.fr/emissions/shuffle");
         feed.setDescription("Shuffle");
+        SyndImage image = new SyndImageImpl();
+        image.setUrl("http://resize-europe1.ladmedia.fr/r/60,60,FFFFFF,center-middle/img/var/europe1/storage/images/europe1/animateurs/emilie-mazoyer/27616862-5-fre-FR/Emilie-Mazoyer.png");
+        image.setTitle("Europe1");
+        feed.setImage(image);
 
         final List entries = new ArrayList();
 
