@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rometools.rome.feed.synd.SyndContent;
 import com.rometools.rome.feed.synd.SyndContentImpl;
+import com.rometools.rome.feed.synd.SyndEnclosure;
+import com.rometools.rome.feed.synd.SyndEnclosureImpl;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndEntryImpl;
 import com.rometools.rome.feed.synd.SyndFeed;
@@ -75,8 +77,13 @@ public class ShuffleAppEngine extends HttpServlet {
                         String[] desc = title.split("-");
 
                         SyndEntry entry = new SyndEntryImpl();
+                        SyndEnclosure enclosure = new SyndEnclosureImpl();
+                        enclosure.setUrl(itemUrl);
+                        enclosure.setType("audio/mpeg");
+                        List<SyndEnclosure> enclosures = new ArrayList<>();
+                        enclosures.add(enclosure);
+                        entry.setEnclosures(enclosures);
                         entry.setTitle(title);
-                        entry.setLink(itemUrl);
 
                         entry.setPublishedDate(simpleDateFormat.parse(desc[2].trim()));
                         entry.setUri(itemUrl);
